@@ -1,0 +1,88 @@
+.panel-status-pesanan {
+	background-color: #f6f3ea;
+	padding: 30px;
+}
+
+.navbar-status-pesanan {
+	color: black;
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.navbar-status-pesanan:hover {
+	color: #ff5740;
+}
+
+.navbar-status-pesanan:active {
+	color: #ff5740;
+}
+
+.div-a-con {
+	margin-top: 50px;
+}
+
+.div-a-con-anak {
+	margin-top: 20px;
+}
+
+.radio {
+	display: inline-flex;
+	align-items: center;
+	cursor: pointer;
+	margin-right: 30px;
+	font-size: 18px;
+}
+
+.radio-input {
+	display: none;
+}
+
+.radio-jk {
+	width: 1.25em;
+	height: 1.25em;
+	border: 2px solid #fb4f31;
+	border-radius: 50%;
+	margin-right: 10px;
+	box-sizing: border-box;
+	padding: 2px;
+}
+
+.radio-jk::after {
+	content: "";
+	width: 100%;
+	height: 100%;
+	display: block;
+	background: #fb4f31;
+	border-radius: 50%;
+
+	transform: scale(0);
+	transition: transform 0.15s;
+}
+
+.radio-input:checked+.radio-jk::after {
+	transform: scale(1);
+}
+
+.btn-login {
+	display: inline-block;
+	background-color: #ff6348;
+	margin: 30px 0 0;
+	color: #fff;
+	border-radius: 4px;
+	font-weight: 600;
+}
+
+.btn-login:hover {
+	background: #fb4f31;
+	color: white;
+}
+
+.alert {
+	background-color: #f86349;
+	color: white;
+}
+
+.alamat-user-con {
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
