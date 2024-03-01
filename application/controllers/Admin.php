@@ -504,7 +504,7 @@ class Admin extends CI_Controller
 
     public function detailPesanan($id_bayar)
     {
-        $data['title'] = 'Detail Pesnan';
+        $data['title'] = 'Detail Pesanan';
         $email = $this->session->userdata('email');
         $data['user'] = $this->db->get_where('tbl_akun', ['email' => $email])->row_array();
         $data['detail'] = $this->db->get_where('tbl_buat_pesanan', ['id_bayar' => $id_bayar])->row_array();

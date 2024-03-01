@@ -161,7 +161,7 @@ class Auth extends CI_Controller
                 'email' => $email,
                 'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
                 'role_id' => 2,
-                'is_aktif' => 0,
+                'is_aktif' => 1,
                 'tgl_dibuat' => time(),
                 'gambar' => 'profil.jpg'
             ];
@@ -174,21 +174,36 @@ class Auth extends CI_Controller
                 'date_created'  => time()
             ];
 
-            $this->HomePage_Model->tambah_data_akun($data);
-            $this->db->insert('tbl_token', $user_token);
+            // $sendIsSuccess = $this->_sendEmail($token, 'verifikasi');
+            $sendIsSuccess = true;
 
-            $this->_sendEmail($token, 'verifikasi');
+            if($sendIsSuccess) {
+                $this->HomePage_Model->tambah_data_akun($data);
+                $this->db->insert('tbl_token', $user_token);
 
-            $this->session->set_flashdata(
-                'pesan',
-                '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        Akun berhasil dibuat, silahkan aktivasi dahulu melalui link yang dikirim ke email.
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                </div>'
-            );
-            redirect('Auth/login');
+                $this->session->set_flashdata(
+                    'pesan',
+                    '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            Akun berhasil dibuat.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>'
+                );
+                redirect('Auth/login');
+            } else {
+                $this->session->set_flashdata(
+                    'pesan',
+                    '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            Internal Server Error
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>'
+                );
+                redirect('Auth/login');
+            }
+           
         }
     }
 
@@ -223,6 +238,7 @@ class Auth extends CI_Controller
             return true;
         } else {
             $eror = $this->email->print_debugger();
+            echo("error");
             var_dump($eror);
             die;
         }
